@@ -16,13 +16,20 @@
         Our algorithms
     </h2>
     <div class="container">
-        <button class="btn">Звездаа</button>
-        <button class="btn">Кластер</a>
+        <button id="starBtn" class="btn">Звездаа</button>
+        <button class="btn">Кластер</button>
         <button class="btn">Генетика</button>
         <button class="btn">Муравьи</button>
         <button class="btn">Древо</button>
         <button class="btn">ИИ</button>
     </div>
+    <div class="optional">
+        <div id="starInput" class="hidden">
+            <input type="number" id="sizeTable" placeholder="Введите n">
+            <button onclick="generateTable()">Построить</button>
+        </div>
+    </div>
+
     <script src="hotweb.js"></script>
     </body>
 </html>
