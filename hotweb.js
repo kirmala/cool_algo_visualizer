@@ -4,23 +4,37 @@ let inputContainer = document.getElementById("starInput");
 starBtn.addEventListener("click", function () {
     inputContainer.classList.toggle("hidden");
 });
+let table = document.getElementById("tab");
+table.addEventListener("click", function () {
+    inputContainer.classList.toggle("hidden");
+});
 
-function table(){
+function generateTable() {
     let size = document.getElementById("sizeTable").value;
-    let cont = document.getElementById("tab");
+    let container = document.getElementById("tab");
 
-    if (!size) alert("Введите число дебилы!!");
-
-    cont.innerHTML = "";
-    cont.style.gridTemplateColumns = `repeat(${size}, 40px)`;
-    cont.style.gridTemplateRows = `repeat(${size}, 40px)`;
-
-
-
-    for(let i = 0; i < size * size; i++){
-        let addDiv = document.createElement("div");
-        addDiv.classList.add("btnTab");
-
+    // Проверяем, ввёл ли пользователь число
+    if (!size || size <= 0) {
+        alert("Введите корректное число!");
+        return;
     }
 
+    // Очищаем старую таблицу
+    container.innerHTML = "";
+
+    // Настраиваем grid
+    container.style.gridTemplateColumns = `repeat(${size}, 40px)`;
+    container.style.gridTemplateRows = `repeat(${size}, 40px)`;
+
+    for (let i = 0; i < size * size; i++) {
+        let cell = document.createElement("div");
+        cell.classList.add("cell");
+
+        // Добавляем обработчик клика для смены цвета
+        cell.addEventListener("click",  () => {
+            cell.classList.toggle("clicked");
+        });
+
+        container.appendChild(cell);
+    }
 }
