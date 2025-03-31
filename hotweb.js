@@ -6,7 +6,7 @@ starBtn.addEventListener("click", function () {
 });
 let table = document.getElementById("tab");
 table.addEventListener("click", function () {
-    inputContainer.classList.toggle("hidden");
+    inputContainer.classList.remove("hiddenTable");
 });
 
 function generateTable() {
