@@ -2,12 +2,13 @@ body {
     margin: 0;
     padding: 0;
     color: white;
+    background-color: #eaeefe;
 }
 h1 {
     font-size: 60px;
     display: flex;
     height: 15vh;
-    background-color: pink;
+    background-color: #1959c0;
     margin: 0;
     justify-content: center;
     align-items: center;
@@ -17,7 +18,7 @@ h2 {
     margin-bottom: 20px;
     margin-top: 30px;
     text-align: center;
-    background-color: pink;
+    background-color: #1959c0;
     border-radius: 100px;
 }
 .container {
@@ -31,10 +32,10 @@ h2 {
     padding: 12px 20px;
     font-size: 18px;
     color: white;
-    background-color: pink;
+    background-color: #1959c0;
     font-weight: bold;
     border-radius: 5px;
-    border-color: pink;
+    border-color: #1959c0;
     transition: 0.3s;
 }
 
@@ -58,4 +59,19 @@ h2 {
 .hidden.show {
     opacity: 1;
     visibility: visible;
+}
+
+#tab {
+    display: grid;
+    gap: 2px;
+    margin-top: 10px;
+    align-content: center;
+    justify-content: center;
+}
+.btnTab{
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s ease-in-out;
+    
+
 }
