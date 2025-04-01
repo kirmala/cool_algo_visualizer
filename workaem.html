@@ -5,31 +5,33 @@
         <link rel="stylesheet" href="styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            my working hits house
+            my working HITs house
         </title>
     </head>
     <body>
     <h1>
-        HITS WORKAET ALGORITMS
+        HITs WORKAET ALGORITMS
     </h1>
     <h2>
         Our algorithms
     </h2>
-    <div class="container">
-        <button id="starBtn" class="btn">Звездаа</button>
-        <button class="btn">Кластер</button>
-        <button class="btn">Генетика</button>
-        <button class="btn">Муравьи</button>
-        <button class="btn">Древо</button>
-        <button class="btn">ИИ</button>
+    <div class="containerForMainButton">
+        <button id="starBtn" class="btnMain">Звездаа</button>
+        <button class="btnMain">Кластер</button>
+        <button class="btnMain">Генетика</button>
+        <button class="btnMain">Муравьи</button>
+        <button class="btnMain">Древо</button>
+        <button class="btnMain">ИИ</button>
     </div>
     
-    <div class="optional">
-        <div id="starInput" class="hidden">
-            <input type="number" id="sizeTable" placeholder="Введите n">
-            <button onclick="generateTable()" >Построить</button>
-            <div id="tab" class="hiddenTable" ></div>
+    <div id="starInput" class="hidden">
+        <div id = "staticInputStar">
+            <input type="number" id="sizeTableForStar" size="17" placeholder="Введите n">
+            <button id = "createButForStar" onclick="generateTableForStar()" >Построить</button>
+            
         </div>
+        <div id="tabForStar" class="hiddenTable" ></div>
+        <button class="hiddenTable" id="createWayForStar">Найти путь</button>
     </div>
 
     <script src="hotweb.js"></script>

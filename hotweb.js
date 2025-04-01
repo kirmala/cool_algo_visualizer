@@ -4,37 +4,43 @@ let inputContainer = document.getElementById("starInput");
 starBtn.addEventListener("click", function () {
     inputContainer.classList.toggle("hidden");
 });
-let table = document.getElementById("tab");
-table.addEventListener("click", function () {
-    inputContainer.classList.remove("hiddenTable");
+
+let tableForStar = document.getElementById("tabForStar");
+let createButtonForTableStar = document.getElementById("createButForStar");
+
+
+createButtonForTableStar.addEventListener("click", function () {
+    tableForStar.classList.remove("hiddenTable");
 });
 
-function generateTable() {
-    let size = document.getElementById("sizeTable").value;
-    let container = document.getElementById("tab");
+function generateTableForStar() {
+    let size = document.getElementById("sizeTableForStar").value;
+    let contain = document.getElementById("tabForStar");
 
-    // Проверяем, ввёл ли пользователь число
+    
     if (!size || size <= 0) {
         alert("Введите корректное число!");
         return;
     }
+    let createButtonforWayStar = document.getElementById("createWayForStar");
+    createButtonforWayStar.classList.remove("hiddenTable");
 
-    // Очищаем старую таблицу
-    container.innerHTML = "";
 
-    // Настраиваем grid
-    container.style.gridTemplateColumns = `repeat(${size}, 40px)`;
-    container.style.gridTemplateRows = `repeat(${size}, 40px)`;
+
+    contain.innerHTML = "";
+
+    contain.style.gridTemplateColumns = `repeat(${size}, 40px)`;
+    contain.style.gridTemplateRows = `repeat(${size}, 40px)`;
 
     for (let i = 0; i < size * size; i++) {
         let cell = document.createElement("div");
-        cell.classList.add("cell");
+        cell.classList.add("btnTabForStar");
 
-        // Добавляем обработчик клика для смены цвета
+        
         cell.addEventListener("click",  () => {
-            cell.classList.toggle("clicked");
+            cell.classList.toggle("clickedForStar");
         });
 
-        container.appendChild(cell);
+        contain.appendChild(cell);
     }
 }

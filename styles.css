@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    background-color: #eaeefe;
+    background-color: #161c36;
+    font-family: Calibri;
 }
 h1 {
     font-size: 60px;
@@ -21,33 +22,27 @@ h2 {
     background-color: #1959c0;
     border-radius: 100px;
 }
-.container {
+.containerForMainButton {
     display: flex;
     gap: 15px;
     justify-content: center;
     
 }
-.btn {
+.btnMain {
+    font-family: Calibri;
     display: inline-block;
     padding: 12px 20px;
-    font-size: 18px;
+    font-size: 20px;
     color: white;
     background-color: #1959c0;
-    font-weight: bold;
     border-radius: 5px;
     border-color: #1959c0;
     transition: 0.3s;
 }
 
-.btn:hover {
+.btnMain:hover {
     background-color: purple;
     border-color: purple;
-}
-.optional {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .hidden {
@@ -61,32 +56,47 @@ h2 {
     visibility: visible;
 }
 
-#tab {
+#tabForStar {
     display: grid;
     gap: 2px;
-    margin-top: 10px;
+    margin-top: 15px;
     align-content: center;
     justify-content: center;
 }
-.btnTab{
+.btnTabForStar{
     width: 40px;
     height: 40px;
-    transition: background-color 0.3s ease-in-out;
-    
-
-}
-
-.cell {
-    width: 40px;
-    height: 40px;
-    background-color: lightgray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     border: 1px solid black;
+    background-color: lightgray;
     transition: background-color 0.3s ease-in-out;
 }
+
 .hiddenTable{
     display: none;
+}
+
+#staticInputStar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+.clickedForStar{
+    background-color: red;
+}
+#starInput {
+    text-align: center;
+}
+#createWayForStar{
+    margin-top: 15px;
+    font-family: Calibri;
+    font-size: 15px;
+    background-color: #1959c0;
+}
+#createButForStar{
+    font-family: Calibri;
+    font-size: 15px;
+    margin-left: 10px;
+    background-color: #1959c0;
 }
