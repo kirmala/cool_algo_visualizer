@@ -100,3 +100,16 @@ h2 {
     margin-left: 10px;
     background-color: #1959c0;
 }
+
+/* #textarea-container {
+    margin-top: 10px;
+    transition: all 0.3s ease;
+} */
+
+textarea {
+    width: 300px;
+    height: 100px;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+}
