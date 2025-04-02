@@ -57,10 +57,11 @@ function checkEvr(but1,but2){
     return Math.abs(but1.position[0] - but2.position[0]) + Math.abs(but1.position[1] - but2.position[1]);
 }
 
-function outFromMatrix(point, matrixStar){
-    [x, y] = point;
-    return x >=0 && y < matrixStar[0].length && y >=0 && x <matrixStar.length;
-
+function outFromMatrix(point, size, matrixStar){
+    let [x, y] = point;
+    if (x >= 0 && y < size && y >= 0 && x < size){
+        if (matrixStar[x][y] !=1)
+    }
 }
 
 function AStar(){
@@ -99,25 +100,30 @@ function AStar(){
         queue.splice(index,1);
 
         if(current.position[0] === end.position[0] && current.position[1] === end.position[1]){
-            let way =[];
-            while (current.parent !=null){
+            let way = [];
+            while (current.parent != null){
                 way.push(current.position);
                 current = current.parent;
             }
             way.reverse();
-            waycreate(way);
+            wayCreate(way);
             return;
         }
 
         let neighbours = [
             new Info(current, [current.position[0] + 1,current.position[1]]),
-            new Info(current, [current.position[0]- 1,current.position[1]]),
+            new Info(current, [current.position[0] - 1,current.position[1]]),
             new Info(current, [current.position[0],current.position[1] + 1]),
             new Info(current, [current.position[0],current.position[1] - 1]),
         ];
-        neighbours = neighbours.filter(neighbor => outFromMatrix(matrixStar, neighbor.position) && matrixStar[neighbour.position[0]][neighbour.position[1]] !== 1);
+        let finalNeighb = [];
 
-        for (let neighbour of neighbours){
+        for (move of neighbours){
+            if (outFromMatrix(move.position, size))
+                finalNeighb.push(move);
+        }
+
+        for (let neighbour of finalNeighb){
             if (visited.some(v => v.position[0] === neighbour.position[0] && v.position[1] === neighbour.position[1])) 
                 continue;
             
@@ -134,7 +140,7 @@ function AStar(){
     alert("Нет пути между данными точками");
 }
 
-function waycreate(way){
+function wayCreate(way){
     for(point of way){
         let edit = document.getElementById(`divTableStar${point[0]}${point[1]}`);
         edit.classList.add("wayPoint");
