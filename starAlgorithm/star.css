@@ -20,6 +20,9 @@ body {
     background-color: lightgray;
     transition: background-color 0.3s ease-in-out;
 }
+.wayPoint{
+    background-color: rgb(14, 73, 44) !important;
+}
 
 .hiddenTable{
     display: none;

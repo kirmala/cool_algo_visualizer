@@ -43,8 +43,93 @@ function generateTableForStar() {
     }
 }
 
+class Info{
+    constructor(parent = null,position=null){
+        this.parent = parent;
+        this.position = position;
+        this.startCur = 0;
+        this.evrCurEnd = 0;
+        this.sumWay = 0;
+    }
+}
+
+function checkEvr(but1,but2){
+    return Math.abs(but1.position[0] - but2.position[0]) + Math.abs(but1.position[1] - but2.position[1]);
+}
+
+function outFromMatrix(point, matrixStar){
+    [x, y] = point;
+    return x >=0 && y < matrixStar[0].length && y >=0 && x <matrixStar.length;
+
+}
 
 function AStar(){
-    let table = document.getElementById("tabForStar");
+    let startEnd = [];
+    for (let i = 0; i < size; i++) {
+        for(let j = 0; j < size; j++){
+            let div = document.getElementById(`divTableStar${i}${j}`);
+            let color = window.getComputedStyle(div).backgroundColor;
 
+            if (color === "rgb(255, 0, 0)") startEnd.push([i, j]);
+        }
+    }
+    let start = new Info(null,startEnd[0]);
+    let end = new Info(null,startEnd[1]);
+
+    let queue = [];
+    let visited = [];
+    queue.push(start);
+    while(queue.length > 0){
+        let current = queue[0];
+        let index = 0;
+        for(let i = 0; i < queue.length;i++){
+            if(queue[i].sumWay < current.sumWay){
+                current = queue[i];
+                index = i;
+            }
+        }
+        visited.push(current);
+        queue.splice(index,1);
+
+        if(current.position[0] === end.position[0] && current.position[1] === end.position[1]){
+            let way =[];
+            while (current.parent !=null){
+                way.push(current.position);
+                current = current.parent;
+            }
+            way.reverse();
+            waycreate(way);
+            return;
+        }
+
+        let neighbours = [
+            new Info(current, [current.position[0] + 1,current.position[1]]),
+            new Info(current, [current.position[0]- 1,current.position[1]]),
+            new Info(current, [current.position[0],current.position[1] + 1]),
+            new Info(current, [current.position[0],current.position[1] - 1]),
+        ];
+        neighbours = neighbours.filter(neighbor => outFromMatrix(matrixStar, neighbor.position) && matrixStar[neighbour.position[0]][neighbour.position[1]] !== 1);
+
+        for (let neighbour of neighbours){
+            if (visited.some(v => v.position[0] === neighbour.position[0] && v.position[1] === neighbour.position[1])) 
+                continue;
+            
+            neighbour.startCur = current.startCur + 1;
+            neighbour.evrCurEnd = checkEvr(neighbour,end);
+            neighbour.sumWay = neighbour.startCur + neighbour.evrCurEnd;
+
+            if(queue.some(q => q.position[0] === neighbour.position[0] && q.position[1] === neighbour.position[1] && neighbour.startCur > q.startCur))
+                continue;
+
+            queue.push(neighbour);
+        }
+    }
+    alert("Нет пути между данными точками");
+}
+
+function waycreate(way){
+    for(point of way){
+        let edit = document.getElementById(`divTableStar${point[0]}${point[1]}`);
+        edit.classList.add("wayPoint");
+    }
 }
