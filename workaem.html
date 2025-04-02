@@ -16,25 +16,15 @@
     Our algorithms
 </h2>
 <div class="containerForMainButton">
-    <button id="starBtn" class="btnMain">Звездаа</button>
+    <a href="starAlgorithm/star.html">
+        <button id="starBtn" class="btnMain" href="star.html">Звездаа</button>
+    </a>
     <button class="btnMain">Кластер</button>
     <button class="btnMain">Генетика</button>
     <button class="btnMain">Муравьи</button>
     <button class="btnMain">Древо</button>
     <button class="btnMain">ИИ</button>
 </div>
-
-<div id="starInput" class="hidden">
-    <div id = "staticInputStar">
-        <input type="number" id="sizeTableForStar" size="17" placeholder="Введите n">
-        <button id = "createButForStar" onclick="generateTableForStar()" class="btnSecondary">Построить</button>
-
-    </div>
-    <p id ="textStarsWithTable" class="hiddenTable">Поставте точку начала и точку конца (2 красные точки точки) <br> Фиолетовые клетки - стены</p>
-    <div id="tabForStar" class="hiddenTable" ></div>
-    <button class="hiddenTable btnSecondary" onclick="AStar()" id="createWayForStar">Найти путь</button>
-</div>
-
 <script src="hotweb.js"></script>
 </body>
 </html>
