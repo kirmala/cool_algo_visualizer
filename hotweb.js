@@ -5,13 +5,11 @@ starBtn.addEventListener("click", function () {
     inputContainer.classList.toggle("hidden");
 });
 
-let tableForStar = document.getElementById("tabForStar");
-let createButtonForTableStar = document.getElementById("createButForStar");
 
 
-createButtonForTableStar.addEventListener("click", function () {
-    tableForStar.classList.remove("hiddenTable");
-});
+
+
+
 
 function generateTableForStar() {
     let size = document.getElementById("sizeTableForStar").value;
@@ -22,25 +20,44 @@ function generateTableForStar() {
         alert("Введите корректное число!");
         return;
     }
+
+    contain.classList.remove("hiddenTable");
     let createButtonforWayStar = document.getElementById("createWayForStar");
     createButtonforWayStar.classList.remove("hiddenTable");
-
+    let textStarsWithTable = document.getElementById("textStarsWithTable");
+    textStarsWithTable.classList.remove("hiddenTable");
+    
 
 
     contain.innerHTML = "";
 
     contain.style.gridTemplateColumns = `repeat(${size}, 40px)`;
     contain.style.gridTemplateRows = `repeat(${size}, 40px)`;
+    window.matrixStar = Array.from({length:size}, () => Array(size).fill(0));
 
-    for (let i = 0; i < size * size; i++) {
-        let cell = document.createElement("div");
-        cell.classList.add("btnTabForStar");
+    for (let i = 0; i < size; i++) {
+        for(let j = 0; j < size; j++){
+            let newDiv = document.createElement("div");
+            newDiv.classList.add("btnTabForStar");
+            newDiv.id = `divTableStar${i}${j}`;
 
-        
-        cell.addEventListener("click",  () => {
-            cell.classList.toggle("clickedForStar");
-        });
-
-        contain.appendChild(cell);
+            let blackDiv = Math.random();
+            if(blackDiv <= 0.25){
+                newDiv.style.backgroundColor = "purple";
+                matrixStar[i][j] = 1;
+            }
+            else{
+                newDiv.addEventListener("click",  () => {
+                    newDiv.classList.toggle("clickedForStar");
+                });
+            }
+            contain.appendChild(newDiv);
+        }
     }
+}
+
+
+function AStar(){
+    let table = document.getElementById("tabForStar");
+
 }

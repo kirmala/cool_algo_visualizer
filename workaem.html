@@ -30,8 +30,9 @@
             <button id = "createButForStar" onclick="generateTableForStar()" >Построить</button>
             
         </div>
+        <p id ="textStarsWithTable" class="hiddenTable">Поставте точку начала и точку конца (2 красные точки точки) <br> Фиолетовые клетки - стены</p>
         <div id="tabForStar" class="hiddenTable" ></div>
-        <button class="hiddenTable" id="createWayForStar">Найти путь</button>
+        <button class="hiddenTable" onclick="AStar()" id="createWayForStar">Найти путь</button>
     </div>
 
     <script src="hotweb.js"></script>
