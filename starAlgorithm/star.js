@@ -64,6 +64,7 @@ function outFromMatrix(point, matrixStar){
 }
 
 function AStar(){
+    let size = document.getElementById("sizeTableForStar").value;
     let startEnd = [];
     for (let i = 0; i < size; i++) {
         for(let j = 0; j < size; j++){
@@ -73,6 +74,12 @@ function AStar(){
             if (color === "rgb(255, 0, 0)") startEnd.push([i, j]);
         }
     }
+
+    if (startEnd.length != 2) {
+        alert("Поставь 2 точки!!!!");
+        return;
+    }
+
     let start = new Info(null,startEnd[0]);
     let end = new Info(null,startEnd[1]);
 
