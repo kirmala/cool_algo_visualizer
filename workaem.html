@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            my working HITs house
-        </title>
-    </head>
-    <body>
-    <h1>
-        HITs WORKAET ALGORITMS
-    </h1>
-    <h2>
-        Our algorithms
-    </h2>
-    <div class="containerForMainButton">
-        <button id="starBtn" class="btnMain">Звездаа</button>
-        <button class="btnMain">Кластер</button>
-        <button class="btnMain">Генетика</button>
-        <button class="btnMain">Муравьи</button>
-        <button class="btnMain">Древо</button>
-        <button class="btnMain">ИИ</button>
-    </div>
-    
-    <div id="starInput" class="hidden">
-        <div id = "staticInputStar">
-            <input type="number" id="sizeTableForStar" size="17" placeholder="Введите n">
-            <button id = "createButForStar" onclick="generateTableForStar()" >Построить</button>
-            
-        </div>
-        <div id="tabForStar" class="hiddenTable" ></div>
-        <button class="hiddenTable" id="createWayForStar">Найти путь</button>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        my working HITs house
+    </title>
+</head>
+<body>
+<h1>
+    HITs WORKAET ALGORITMS
+</h1>
+<h2>
+    Our algorithms
+</h2>
+<div class="containerForMainButton">
+    <button id="starBtn" class="btnMain">Звездаа</button>
+    <button class="btnMain">Кластер</button>
+    <button class="btnMain">Генетика</button>
+    <button class="btnMain">Муравьи</button>
+    <button class="btnMain">Древо</button>
+    <button class="btnMain">ИИ</button>
+</div>
 
-    <script src="hotweb.js"></script>
-    </body>
+<div id="starInput" class="hidden">
+    <div id = "staticInputStar">
+        <input type="number" id="sizeTableForStar" size="17" placeholder="Введите n">
+        <button id = "createButForStar" onclick="generateTableForStar()" class="btnSecondary">Построить</button>
+
+    </div>
+    <p id ="textStarsWithTable" class="hiddenTable">Поставте точку начала и точку конца (2 красные точки точки) <br> Фиолетовые клетки - стены</p>
+    <div id="tabForStar" class="hiddenTable" ></div>
+    <button class="hiddenTable btnSecondary" onclick="AStar()" id="createWayForStar">Найти путь</button>
+</div>
+
+<script src="hotweb.js"></script>
+</body>
 </html>
