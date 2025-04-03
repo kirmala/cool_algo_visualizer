@@ -1,3 +1,4 @@
+
 function generateTableForStar() {
     let size = document.getElementById("sizeTableForStar").value;
     let contain = document.getElementById("tabForStar");
@@ -13,6 +14,8 @@ function generateTableForStar() {
     createButtonforWayStar.classList.remove("hiddenTable");
     let textStarsWithTable = document.getElementById("textStarsWithTable");
     textStarsWithTable.classList.remove("hiddenTable");
+    let cleanBut = document.getElementById("cleanButton");
+    cleanBut.classList.remove("hiddenTable");
 
 
 
@@ -43,6 +46,8 @@ function generateTableForStar() {
     }
 }
 
+
+
 class Info{
     constructor(parent = null,position=null){
         this.parent = parent;
@@ -57,11 +62,13 @@ function checkEvr(but1,but2){
     return Math.abs(but1.position[0] - but2.position[0]) + Math.abs(but1.position[1] - but2.position[1]);
 }
 
-function outFromMatrix(point, size, matrixStar){
-    let [x, y] = point;
-    if (x >= 0 && y < size && y >= 0 && x < size){
-        if (matrixStar[x][y] !=1)
-    }
+function outFromMatrix(point, size) {
+    let x = point[0];
+    let y = point[1];
+
+    if (x < 0 || y < 0 || x >= size || y >= size) return false;
+    if (window.matrixStar[x][y] === 1) return false;
+    return true;
 }
 
 function AStar(){
@@ -105,6 +112,7 @@ function AStar(){
                 way.push(current.position);
                 current = current.parent;
             }
+            way.push(current.position);
             way.reverse();
             wayCreate(way);
             return;
@@ -119,7 +127,7 @@ function AStar(){
         let finalNeighb = [];
 
         for (move of neighbours){
-            if (outFromMatrix(move.position, size))
+            if (outFromMatrix(move.position, size, matrixStar))
                 finalNeighb.push(move);
         }
 
@@ -141,8 +149,10 @@ function AStar(){
 }
 
 function wayCreate(way){
-    for(point of way){
+    for(let point of way){
         let edit = document.getElementById(`divTableStar${point[0]}${point[1]}`);
-        edit.classList.add("wayPoint");
+        if (edit) {
+            edit.classList.add("wayPoint");
+        }
     }
 }
