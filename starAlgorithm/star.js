@@ -151,8 +151,12 @@ function AStar(){
 function wayCreate(way){
     for(let point of way){
         let edit = document.getElementById(`divTableStar${point[0]}${point[1]}`);
-        if (edit) {
-            edit.classList.add("wayPoint");
-        }
+        edit.classList.add("wayPoint");
     }
+}
+function clearWay() {
+    let elements = document.querySelectorAll(".wayPoint"); 
+    elements.forEach(el => el.classList.remove("wayPoint"));
+    elements = document.querySelectorAll(".clickedForStar"); 
+    elements.forEach(el => el.classList.remove("clickedForStar"));
 }
