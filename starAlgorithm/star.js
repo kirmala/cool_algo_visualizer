@@ -111,13 +111,15 @@ function AStar(){
     let visitedSet = new Set();
     let queue = [start];
     let queueMap = new Map();
-    queueMap.set(start.position, start);
+    const keyStart = `${start.position[0]}_${start.position[1]}`;
+    queueMap.set(keyStart, start);
 
     while (queue.length > 0) {
         queue.sort((a, b) => a.sumWay - b.sumWay);
         let current = queue.shift();
-        queueMap.delete(current.position);
-        visitedSet.add(current.position);
+        let keyCurrent = `${current.position[0]}_${current.position[1]}`;
+        queueMap.delete(keyCurrent);
+        visitedSet.add(keyCurrent);
 
         if (current.position[0] === end.position[0] && current.position[1] === end.position[1]) {
             wayCreate(current);
@@ -132,13 +134,13 @@ function AStar(){
 
             if (!outFromMatrix(posit, size, matrixStar)) continue;
 
+            let keyN = `${nx}_${ny}`;
+            if (visitedSet.has(keyN)) continue;
+
             let neighbour = new Info(current, posit);
             neighbour.startCur = current.startCur + 1;
             neighbour.evrCurEnd = checkEvr(neighbour, end);
             neighbour.sumWay = neighbour.startCur + neighbour.evrCurEnd;
-
-            let keyN = posit;
-            if (visitedSet.has(keyN)) continue;
 
             if (!queueMap.has(keyN) || queueMap.get(keyN).startCur > neighbour.startCur) {
                 queue.push(neighbour);
