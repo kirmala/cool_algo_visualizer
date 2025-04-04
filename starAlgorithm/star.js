@@ -29,7 +29,7 @@ function generateTableForStar() {
         for(let j = 0; j < size; j++){
             let newDiv = document.createElement("div");
             newDiv.classList.add("btnTabForStar");
-            newDiv.id = `divTableStar${i}${j}`;
+            newDiv.id = `divTableStar${i}_${j}`;
 
             let blackDiv = Math.random();
             if(blackDiv <= 0.25){
@@ -62,26 +62,20 @@ function checkEvr(but1,but2){
     return Math.abs(but1.position[0] - but2.position[0]) + Math.abs(but1.position[1] - but2.position[1]);
 }
 
-function outFromMatrix(point, size) {
+function outFromMatrix(point, size, matrixStar) {
     let x = point[0];
     let y = point[1];
 
     if (x < 0 || y < 0 || x >= size || y >= size) return false;
-    if (window.matrixStar[x][y] === 1) return false;
+    if (matrixStar[x][y] === 1) return false;
     return true;
 }
 
 function AStar(){
     let size = document.getElementById("sizeTableForStar").value;
-    let startEnd = [];
-    for (let i = 0; i < size; i++) {
-        for(let j = 0; j < size; j++){
-            let div = document.getElementById(`divTableStar${i}${j}`);
-            let color = window.getComputedStyle(div).backgroundColor;
-
-            if (color === "rgb(255, 0, 0)") startEnd.push([i, j]);
-        }
-    }
+    let startEnd = [...document.querySelectorAll(".clickedForStar")].map(div => {
+    let match = div.id.match(/\d+_\d+/g);
+    return match ? match[0].split("_").map(Number) : null;}).filter(Boolean);
 
     if (startEnd.length != 2) {
         alert("Поставь 2 точки!!!!");
@@ -105,6 +99,11 @@ function AStar(){
         }
         visited.push(current);
         queue.splice(index,1);
+
+        if (current.g > 1000) {
+            alert("Поиск слишком длинный, останавливаемся");
+            break;
+        }
 
         if(current.position[0] === end.position[0] && current.position[1] === end.position[1]){
             let way = [];
@@ -150,7 +149,7 @@ function AStar(){
 
 function wayCreate(way){
     for(let point of way){
-        let edit = document.getElementById(`divTableStar${point[0]}${point[1]}`);
+        let edit = document.getElementById(`divTableStar${point[0]}_${point[1]}`);
         edit.classList.add("wayPoint");
     }
 }

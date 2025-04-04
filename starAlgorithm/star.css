@@ -5,6 +5,9 @@ body {
     background-color: #161c36;
     font-family: Calibri;
 }
+#textStarsWithTable{
+    font-size: 25px;
+}
 #tabForStar {
     display: grid;
     gap: 2px;
