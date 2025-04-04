@@ -3,24 +3,29 @@ function generateTableForStar() {
     let size = document.getElementById("sizeTableForStar").value;
     let contain = document.getElementById("tabForStar");
 
-
     if (!size || size <= 0) {
         alert("Введите корректное число!");
         return;
     }
-
     contain.classList.remove("hiddenTable");
+
     let createButtonforWayStar = document.getElementById("createWayForStar");
     createButtonforWayStar.classList.remove("hiddenTable");
+
     let textStarsWithTable = document.getElementById("textStarsWithTable");
     textStarsWithTable.classList.remove("hiddenTable");
+
     let cleanBut = document.getElementById("cleanButton");
     cleanBut.classList.remove("hiddenTable");
 
+    let Rd = document.getElementById("RdButton");
+    Rd.classList.remove("hiddenTable");
+
+    let Pr = document.getElementById("PrButton");
+    Pr.classList.remove("hiddenTable");
 
 
     contain.innerHTML = "";
-
     contain.style.gridTemplateColumns = `repeat(${size}, 40px)`;
     contain.style.gridTemplateRows = `repeat(${size}, 40px)`;
     window.matrixStar = Array.from({length:size}, () => Array(size).fill(0));
@@ -30,18 +35,35 @@ function generateTableForStar() {
             let newDiv = document.createElement("div");
             newDiv.classList.add("btnTabForStar");
             newDiv.id = `divTableStar${i}_${j}`;
-
-            let blackDiv = Math.random();
-            if(blackDiv <= 0.25){
-                newDiv.style.backgroundColor = "purple";
-                matrixStar[i][j] = 1;
-            }
-            else{
-                newDiv.addEventListener("click",  () => {
-                    newDiv.classList.toggle("clickedForStar");
-                });
-            }
             contain.appendChild(newDiv);
+        }
+    }
+}
+
+
+function checkState(currentMode){
+    document.querySelectorAll(".btnTabForStar").forEach(elem => {
+        elem.addEventListener("click",universalStep);
+    });
+    window.mode = currentMode;
+}
+
+function universalStep(e) {
+    const elem = e.currentTarget;
+
+
+    if (mode === "block") {
+        if (!elem.classList.contains("clickedRed")) {
+            elem.classList.toggle("clickedPurple");
+            let point= elem.id.match(/\d+_\d+/)[0].split("_").map(Number);
+            let x = point[0];
+            let y = point[1];
+            matrixStar[x][y] = elem.classList.contains("clickedPurple") ? 1 : 0;
+        }
+    }
+    else if (mode === "red") {
+        if (!elem.classList.contains("clickedPurple")) {
+            elem.classList.toggle("clickedRed");
         }
     }
 }
@@ -73,9 +95,10 @@ function outFromMatrix(point, size, matrixStar) {
 
 function AStar(){
     let size = document.getElementById("sizeTableForStar").value;
-    let startEnd = [...document.querySelectorAll(".clickedForStar")].map(div => {
+    let startEnd = [...document.querySelectorAll(".clickedRed")].map(div => {
     let match = div.id.match(/\d+_\d+/g);
-    return match ? match[0].split("_").map(Number) : null;}).filter(Boolean);
+    return match ? match[0].split("_").map(Number) : null;
+    }).filter(Boolean);
 
     if (startEnd.length != 2) {
         alert("Поставь 2 точки!!!!");
@@ -85,77 +108,61 @@ function AStar(){
     let start = new Info(null,startEnd[0]);
     let end = new Info(null,startEnd[1]);
 
-    let queue = [];
-    let visited = [];
-    queue.push(start);
-    while(queue.length > 0){
-        let current = queue[0];
-        let index = 0;
-        for(let i = 0; i < queue.length;i++){
-            if(queue[i].sumWay < current.sumWay){
-                current = queue[i];
-                index = i;
-            }
-        }
-        visited.push(current);
-        queue.splice(index,1);
+    let visitedSet = new Set();
+    let queue = [start];
+    let queueMap = new Map();
+    queueMap.set(start.position, start);
 
-        if (current.g > 1000) {
-            alert("Поиск слишком длинный, останавливаемся");
-            break;
-        }
+    while (queue.length > 0) {
+        queue.sort((a, b) => a.sumWay - b.sumWay);
+        let current = queue.shift();
+        queueMap.delete(current.position);
+        visitedSet.add(current.position);
 
-        if(current.position[0] === end.position[0] && current.position[1] === end.position[1]){
-            let way = [];
-            while (current.parent != null){
-                way.push(current.position);
-                current = current.parent;
-            }
-            way.push(current.position);
-            way.reverse();
-            wayCreate(way);
+        if (current.position[0] === end.position[0] && current.position[1] === end.position[1]) {
+            wayCreate(current);
             return;
         }
 
-        let neighbours = [
-            new Info(current, [current.position[0] + 1,current.position[1]]),
-            new Info(current, [current.position[0] - 1,current.position[1]]),
-            new Info(current, [current.position[0],current.position[1] + 1]),
-            new Info(current, [current.position[0],current.position[1] - 1]),
-        ];
-        let finalNeighb = [];
+        let directions = [[1,0], [-1,0], [0,1], [0,-1]];
+        for (let [dx, dy] of directions) {
+            let nx = current.position[0] + dx;
+            let ny = current.position[1] + dy;
+            let posit = [nx, ny];
 
-        for (move of neighbours){
-            if (outFromMatrix(move.position, size, matrixStar))
-                finalNeighb.push(move);
-        }
+            if (!outFromMatrix(posit, size, matrixStar)) continue;
 
-        for (let neighbour of finalNeighb){
-            if (visited.some(v => v.position[0] === neighbour.position[0] && v.position[1] === neighbour.position[1])) 
-                continue;
-            
+            let neighbour = new Info(current, posit);
             neighbour.startCur = current.startCur + 1;
-            neighbour.evrCurEnd = checkEvr(neighbour,end);
+            neighbour.evrCurEnd = checkEvr(neighbour, end);
             neighbour.sumWay = neighbour.startCur + neighbour.evrCurEnd;
 
-            if(queue.some(q => q.position[0] === neighbour.position[0] && q.position[1] === neighbour.position[1] && neighbour.startCur > q.startCur))
-                continue;
+            let keyN = posit;
+            if (visitedSet.has(keyN)) continue;
 
-            queue.push(neighbour);
+            if (!queueMap.has(keyN) || queueMap.get(keyN).startCur > neighbour.startCur) {
+                queue.push(neighbour);
+                queueMap.set(keyN, neighbour);
+            }
         }
     }
-    alert("Нет пути между данными точками");
+    alert("Нет пути!!!");
 }
 
-function wayCreate(way){
-    for(let point of way){
-        let edit = document.getElementById(`divTableStar${point[0]}_${point[1]}`);
+function wayCreate(current){
+    while (current.parent != null) {
+        let edit = document.getElementById(`divTableStar${current.position[0]}_${current.position[1]}`);
         edit.classList.add("wayPoint");
+        current = current.parent;
     }
+    let edit = document.getElementById(`divTableStar${current.position[0]}_${current.position[1]}`);
+    edit.classList.add("wayPoint");
 }
+
+
 function clearWay() {
     let elements = document.querySelectorAll(".wayPoint"); 
     elements.forEach(el => el.classList.remove("wayPoint"));
-    elements = document.querySelectorAll(".clickedForStar"); 
-    elements.forEach(el => el.classList.remove("clickedForStar"));
+    elements = document.querySelectorAll(".clickedRed");
+    elements.forEach(el => el.classList.remove("clickedRed"));
 }

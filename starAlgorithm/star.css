@@ -37,26 +37,29 @@ body {
     align-items: center;
     margin-top: 15px;
 }
-.clickedForStar{
+.clickedRed{
     background-color: red;
 }
+
+.clickedPurple{
+    background-color: purple;
+}
+
 #starInput {
     text-align: center;
 }
 .btnSecondary {
     font-family: Calibri;
-    font-size: 19px;
+    font-size: 23px;
     margin-left: 10px;
     background-color: #1959c0;
     color: white;
+    margin-top: 10px;
     border-radius: 5px;
     border-color: #1959c0;
     transition: 0.3s;
 }
-#createWayForStar{
-    margin-top: 10px;
-    font-size: 23px;
-}
+
 .btnSecondary:hover {
     background-color: purple;
     border-color: purple;
@@ -93,9 +96,4 @@ body {
 #sizeTableForStar::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-#cleanButton{
-    margin-top: 10px;
-    font-size: 23px;
 }
