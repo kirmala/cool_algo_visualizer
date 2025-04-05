@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    background-color: #161c36;
+    background: linear-gradient(to right, #161c36, #1a237e);
     font-family: Calibri;
 }
 #textStarsWithTable{
@@ -14,17 +14,24 @@ body {
     margin-top: 15px;
     align-content: center;
     justify-content: center;
+    box-shadow:
+            0 0 10px rgba(132, 33, 255, 0.4),
+            0 0 20px rgba(132, 33, 255, 0.3),
+            0 0 40px rgba(132, 33, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px;
+    transition: box-shadow 0.5s ease-in-out;
 }
 .btnTabForStar{
     width: 40px;
     height: 40px;
     cursor: pointer;
     border: 1px solid black;
-    background-color: lightgray;
+    background-color: #a881b1;
     transition: background-color 0.3s ease-in-out;
 }
 .wayPoint{
-    background-color: rgb(14, 73, 44) !important;
+    background-color: rgb(42, 104, 69) !important;
 }
 
 .hiddenTable{
@@ -36,6 +43,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 15px;
+    animation: fadeIn 0.5s ease-in-out forwards;
 }
 .clickedRed{
     background-color: red;
@@ -55,14 +63,19 @@ body {
     background-color: #1959c0;
     color: white;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     border-color: #1959c0;
     transition: 0.3s;
+    box-shadow: 0 0 10px #8421ff;
+    position: relative;
+    overflow: hidden;
 }
 
 .btnSecondary:hover {
-    background-color: purple;
-    border-color: purple;
+    transform: scale(1.1);
+    background-color: #5b0bb1;
+    border-color: #5b0bb1;
+
 }
 
 #sizeTableForStar {
@@ -76,11 +89,12 @@ body {
     background-color: #161c36;
     color: white;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px #8421ff;
 }
 
 #sizeTableForStar:focus {
     border-color: purple;
-    box-shadow: 0 0 8px rgba(128, 0, 128, 0.5);
+    box-shadow: 0 0 10px #8421ff;
 }
 
 #sizeTableForStar::placeholder {
@@ -89,11 +103,45 @@ body {
 }
 
 #sizeTableForStar:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+    background-color: #8421ff;
+    border-color: #8421ff;
 }
 
 #sizeTableForStar::-webkit-outer-spin-button,
 #sizeTableForStar::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.btnTabForStar:hover {
+    outline: 2px solid #8d1bcf;
+    z-index: 1;
+}
+
+.btnSecondary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.4s ease-in-out;
+    pointer-events: none;
+}
+
+.btnSecondary:hover::before {
+    left: 100%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

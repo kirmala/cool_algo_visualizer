@@ -101,7 +101,7 @@ function AStar(){
     }).filter(Boolean);
 
     if (startEnd.length != 2) {
-        alert("Поставь 2 точки!!!!");
+        alert("Поставьте 2 точки!!!!");
         return;
     }
 
