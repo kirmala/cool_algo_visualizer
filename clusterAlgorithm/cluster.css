@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #161c36;
+    margin: 0;
+}
+
+h1 {
+    position: absolute;
+    top: 10px; /* Меньший отступ сверху */
+    color: white;
+    font-size: 30px; /* Уменьшаем размер текста */
+    text-align: center;
+}
+
+canvas {
+    background-color: white;
+    border: 2px solid black;
+}
+.btnCluster {
+    font-family: Calibri;
+    font-size: 50px;
+    margin-left: 10px;
+    background-color: #1959c0;
+    color: white;
+    border-radius: 5px;
+    border-color: #1959c0;
+    transition: 0.3s;
+    margin-bottom: 40px;
+}

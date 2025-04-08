@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="star.css">
+  <title>A STAR</title>
+</head>
+<body>
+<div id="starInput">
+  <div id = "staticInputStar">
+    <input type="number" id="sizeTableForStar" size="17" placeholder="Введите n">
+    <button id = "createButForStar" onclick="generateTableForStar()" class="btnSecondary">Построить</button>
+
+  </div>
+  <p id ="textStarsWithTable" class="hiddenTable">Поставте точку начала и точку конца (2 красные точки точки) <br> Фиолетовые клетки - стены <br> Зеленые клетки - путь</p>
+  <div id="tabForStar" class="hiddenTable" ></div>
+  <div>
+    <button class="hiddenTable btnSecondary" onclick="checkState('block')" id="PrButton">Ставить блоки стены</button>
+    <button class="hiddenTable btnSecondary" onclick="checkState('red')" id="RdButton">Ставить start и end</button>
+    <button class="hiddenTable btnSecondary" onclick="AStar()" id="createWayForStar">Найти путь</button>
+    <button class="hiddenTable btnSecondary" onclick="clearWay()" id="cleanButton">Очистить</button>
+  </div>
+</div>
+<script src="star.js"></script>
+</body>
+</html>
