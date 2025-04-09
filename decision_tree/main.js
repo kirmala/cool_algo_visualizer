@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Parse headers, if provided
         try {
-            parsedHeaders = userHeaders ? parse(userHeaders) : null;
+            parsedHeaders = userHeaders ? parse(userHeaders)[0] : null;
         } catch (error) {
             console.log("Using default headers due to error:", error.message);
         }
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const parsedObject = parse(userObject);
+            const parsedObject = parse(userObject)[0];
             console.log("Classifying object:", parsedObject);
 
             // Get classification path and visualize with path highlighted

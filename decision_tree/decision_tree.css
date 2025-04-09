@@ -27,6 +27,8 @@ body {
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    /* overflow-x: scroll;
+    overflow-y: scroll; */
     align-items: center;
     padding-left: 20px; /* Space between the inputs and the tree */
     box-sizing: border-box;
@@ -38,6 +40,11 @@ textarea {
     padding: 8px;
     font-family: Arial, sans-serif;
     resize: vertical;
+}
+
+
+#treeCanvas {
+    display: block;
 }
 
 button {

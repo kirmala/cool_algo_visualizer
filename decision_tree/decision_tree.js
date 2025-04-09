@@ -173,8 +173,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const nodeRadius = 60;
-const levelHeight = 150;
+const nodeRadius = 45;
+const levelHeight = 130;
 const nodePadding = 20;
 
 function measureTreeDepth(node) {
