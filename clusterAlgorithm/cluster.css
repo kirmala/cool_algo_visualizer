@@ -10,9 +10,9 @@ body {
 
 h1 {
     position: absolute;
-    top: 10px; /* Меньший отступ сверху */
+    top: 10px;
     color: white;
-    font-size: 30px; /* Уменьшаем размер текста */
+    font-size: 30px;
     text-align: center;
 }
 
@@ -20,9 +20,9 @@ canvas {
     background-color: white;
     border: 2px solid black;
 }
-.btnCluster {
+.clusterBtn {
     font-family: Calibri;
-    font-size: 50px;
+    font-size: 30px;
     margin-left: 10px;
     background-color: #1959c0;
     color: white;
@@ -30,4 +30,47 @@ canvas {
     border-color: #1959c0;
     transition: 0.3s;
     margin-bottom: 40px;
+    margin-top: 40px;
+}
+#numOfClusters {
+    width: 150px;
+    height: 40px;
+    padding: 6px 12px;
+    font-size: 24px;
+    border: 2px solid #1959c0;
+    border-radius: 18px;
+    text-align: center;
+    background-color: #161c36;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px #8421ff;
+}
+#clearBtn{
+    margin-top: 40px;
+}
+
+#numOfClusters:focus {
+    border-color: purple;
+    box-shadow: 0 0 10px #8421ff;
+}
+
+#numOfClusters::placeholder {
+    color: white;
+    font-size: 17px;
+}
+
+#numOfClusters:hover {
+    transform: scale(1.1);
+    background-color: #8421ff;
+    border-color: #8421ff;
+}
+
+#numOfClusters::-webkit-outer-spin-button,
+#numOfClusters::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.button-container {
+    display: flex;
+    gap: 10px;
 }
