@@ -64,13 +64,13 @@ class Ant{
         return res;
     }
 
-    choice(list, pList, a, b){
+    choice(list, phList, a, b){
         const neighbours = this.getNeigh(list);
         const wishList = [];
         let sum = 0.0;
         for(let neigh of neighbours){
             if (!this.visited.includes(neigh)) {
-                const levelP = pList[this.curPeak][neigh];
+                const levelP = phList[this.curPeak][neigh];
                 const evr = 1/list[this.curPeak][neigh];
                 let val = Math.pow(levelP, a) * Math.pow(evr, b);
                 wishList.push([neigh, val]);
@@ -101,23 +101,23 @@ class Ant{
 }
 
 class AntsAlgo{
-    constructor(list) {
+    constructor(matrix) {
         this.a = 1.0;
         this.b = 2.0;
-        this.list = list;
-        this.p = 1;
+        this.matrix = matrix;
+        this.ph = 1;
         this.Q = 100.0;
-        this.delP = 0.2;
+        this.delPh = 0.2;
 
-        this.size = list.length;
-        this.pList = Array.from({length:this.size}, () => Array(this.size).fill(this.p));
+        this.size = matrix.length;
+        this.phList = Array.from({length:this.size}, () => Array(this.size).fill(this.ph));
         this.ants = [];
     }
 
     creatAnts(count){
         this.ants = [];
         for(let i = 0; i < count; i++){
-            const ant = new Ant(i % this.list.length);
+            const ant = new Ant(i % this.matrix.length);
             ant.visited.push(ant.startPeak);
             ant.path.peakAnt.push(ant.startPeak);
             this.ants.push(ant);
@@ -126,7 +126,7 @@ class AntsAlgo{
 
     upgradeP(){
         for(let i = 0; i < this.size; i++){
-            for(let j = 0; j < this.size; j++) this.pList[i][j] *= (1 - this.delP);
+            for(let j = 0; j < this.size; j++) this.phList[i][j] *= (1 - this.delPh);
         }
 
         for(const ant of this.ants){
@@ -134,8 +134,8 @@ class AntsAlgo{
             const dist = ant.path.distance;
             for(let i = 0; i < peaks.length - 1; i++){
                 const delta = this.Q / dist;
-                this.pList[peaks[i]][peaks[i + 1]] += delta;
-                this.pList[peaks[i + 1]][peaks[i]] += delta;
+                this.phList[peaks[i]][peaks[i + 1]] += delta;
+                this.phList[peaks[i + 1]][peaks[i]] += delta;
             }
         }
     }
@@ -146,7 +146,7 @@ class AntsAlgo{
             this.creatAnts(antCount);
             for(let ant of this.ants){
                 while (ant.contin)
-                    ant.choice(this.list, this.pList, this.a, this.b);
+                    ant.choice(this.matrix, this.phList, this.a, this.b);
 
                 if (!bestW || ant.path.distance < bestW.distance) {
                     bestW = JSON.parse(JSON.stringify(ant.path));
@@ -162,7 +162,7 @@ function launch() {
     let countIt = document.getElementById("iter").value;
     let countAnts = document.getElementById("countAnts").value;
 
-    if (!countIt || !countAnts || countIt > 100 || countAnts > 100) {
+    if (!countIt || !countAnts || countIt > 100 || countAnts > 100 || countIt <= 0 || countAnts <= 0) {
         showAlert("Введите корректные значения: итераций ≤ 100, муравьев ≤ 100");
         return;
     }
