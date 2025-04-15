@@ -5,9 +5,20 @@ body {
     background: linear-gradient(to right, #161c36, #1a237e);
     font-family: Calibri;
 }
+
 #textStarsWithTable{
     font-size: 25px;
+    text-shadow: 0 0 10px #8421ff, 0 0 20px #8421ff;
+    animation: neonText 1s infinite alternate;
 }
+
+@keyframes neonText {
+    0% {text-shadow: 0 0 5px #8421ff, 0 0 10px #8421ff;}
+    50% {text-shadow: 0 0 15px #8421ff, 0 0 30px #8421ff;}
+    100% {text-shadow: 0 0 5px #8421ff, 0 0 10px #8421ff;}
+}
+
+
 #tabForStar {
     display: grid;
     gap: 2px;
@@ -22,6 +33,7 @@ body {
     padding: 10px;
     transition: box-shadow 0.5s ease-in-out;
 }
+
 .btnTabForStar{
     width: 40px;
     height: 40px;
@@ -30,6 +42,13 @@ body {
     background-color: #a881b1;
     transition: background-color 0.3s ease-in-out;
 }
+
+.btnTabForStar:hover {
+    outline: 2px solid #8d1bcf;
+    z-index: 1;
+}
+
+
 .wayPoint{
     background-color: rgb(42, 104, 69) !important;
 }
@@ -45,6 +64,19 @@ body {
     margin-top: 15px;
     animation: fadeIn 0.5s ease-in-out forwards;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 .clickedRed{
     background-color: red;
 }
@@ -56,6 +88,8 @@ body {
 #starInput {
     text-align: center;
 }
+
+
 .btnSecondary {
     font-family: Calibri;
     font-size: 23px;
@@ -63,7 +97,7 @@ body {
     background-color: #1959c0;
     color: white;
     margin-top: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     border-color: #1959c0;
     transition: 0.3s;
     box-shadow: 0 0 10px #8421ff;
@@ -77,6 +111,23 @@ body {
     border-color: #5b0bb1;
 
 }
+
+.btnSecondary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.4s ease-in-out;
+    pointer-events: none;
+}
+
+.btnSecondary:hover::before {
+    left: 100%;
+}
+
 
 #sizeTableForStar {
     width: 120px;
@@ -114,34 +165,49 @@ body {
     margin: 0;
 }
 
-.btnTabForStar:hover {
-    outline: 2px solid #8d1bcf;
-    z-index: 1;
-}
 
-.btnSecondary::before {
-    content: "";
-    position: absolute;
+
+.customAlert {
+    position: fixed;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: left 0.4s ease-in-out;
-    pointer-events: none;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
-.btnSecondary:hover::before {
-    left: 100%;
+.customAlertBox {
+    background-color: #1959c0;
+    padding: 30px;
+    border-radius: 20px;
+    border: 4px solid #8421ff;
+    box-shadow: 0 0 30px #8421ff;
+    font-family: Calibri;
+    font-size: 20px;
+    text-align: center;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
+.customAlertBox button {
+    font-family: Calibri;
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #8421ff;
+    color: white;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.customAlertBox button:hover {
+    background-color: #5a17b1;
+}
+
+.hidden{
+    display: none;
 }
