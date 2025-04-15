@@ -1,10 +1,19 @@
+function showAlert(text) {
+    document.getElementById("alertText").innerText = text;
+    document.getElementById("myAlert").classList.remove("hidden");
+}
+
+function closeAlert() {
+    document.getElementById("myAlert").classList.add("hidden");
+}
+
 
 function generateTableForStar() {
     let size = document.getElementById("sizeTableForStar").value;
     let contain = document.getElementById("tabForStar");
 
     if (!size || size <= 0) {
-        alert("Введите корректное число!");
+        showAlert("Введите корректное число!");
         return;
     }
     contain.classList.remove("hiddenTable");
@@ -101,7 +110,7 @@ function AStar(){
     }).filter(Boolean);
 
     if (startEnd.length != 2) {
-        alert("Поставьте 2 точки!!!!");
+        showAlert("Поставьте 2 точки!!!!");
         return;
     }
 
@@ -148,7 +157,7 @@ function AStar(){
             }
         }
     }
-    alert("Нет пути!!!");
+    showAlert("Нет пути!!!");
 }
 
 function wayCreate(current){

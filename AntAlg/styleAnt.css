@@ -18,6 +18,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-shadow: 0 0 10px #8421ff, 0 0 20px #8421ff;
+    animation: neonText 1s infinite alternate;
+}
+
+@keyframes neonText {
+    0% {text-shadow: 0 0 5px #8421ff, 0 0 10px #8421ff;}
+    50% {text-shadow: 0 0 15px #8421ff, 0 0 30px #8421ff;}
+    100% {text-shadow: 0 0 5px #8421ff, 0 0 10px #8421ff;}
 }
 
 .btn {
@@ -67,6 +75,13 @@ body {
 }
 #myCanvas {
     background-color: #ac81b1;
+    border: 2px solid blue;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #8421ff;
+}
+
+#myCanvas:focus {
+
 }
 
 .inp{
@@ -107,4 +122,49 @@ body {
     transform: scale(1.1);
     background-color: #8421ff;
     border-color: #8421ff;
+}
+
+.customAlert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.customAlertBox {
+    background-color: #1959c0;
+    padding: 30px;
+    border-radius: 20px;
+    border: 4px solid #8421ff;
+    box-shadow: 0 0 30px #8421ff;
+    font-family: Calibri;
+    font-size: 20px;
+    text-align: center;
+}
+
+.customAlertBox button {
+    font-family: Calibri;
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #8421ff;
+    color: white;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.customAlertBox button:hover {
+    background-color: #5a17b1;
+}
+
+.hidden {
+    display: none;
 }

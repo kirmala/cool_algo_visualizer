@@ -3,6 +3,17 @@ const ctx = can.getContext("2d");
 let clBtn = document.querySelectorAll(".btn");
 let points = [];
 
+
+function showAlert(text = "Это кастомный alert!") {
+    document.getElementById("alertText").innerText = text;
+    document.getElementById("myAlert").classList.remove("hidden");
+}
+
+function closeAlert() {
+    document.getElementById("myAlert").classList.add("hidden");
+}
+
+
 can.addEventListener("click", function(event) {
     const rect = can.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -151,15 +162,16 @@ function launch() {
     let countIt = document.getElementById("iter").value;
     let countAnts = document.getElementById("countAnts").value;
 
-    if (!countIt || !countAnts || countIt > 50 || countAnts > 50) {
-        alert("Введите корректные значения: итераций ≤ 50, муравьев ≤ 50");
+    if (!countIt || !countAnts || countIt > 100 || countAnts > 100) {
+        showAlert("Введите корректные значения: итераций ≤ 100, муравьев ≤ 100");
         return;
     }
 
     const matrix = build(points);
     const alg = new AntsAlgo(matrix);
 
-    let bestW = alg.StartAlg(countIt,countAnts);
+    if (parseInt(countAnts) < points.length) countAnts = points.length;
+    let bestW = alg.StartAlg(parseInt(countIt),parseInt(countAnts));
 
     ctx.strokeStyle = "purple";
     ctx.lineWidth = 3;

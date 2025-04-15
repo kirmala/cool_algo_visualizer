@@ -6,7 +6,7 @@
     <title>Ants</title>
 </head>
 <body>
-<p id ="text">Для лучшей работы желательно, чтобы количество муравьев было равно количеству вершин!</p>
+<p id ="text">Для лучшей работы желательно, чтобы количество муравьев ≥ количеству вершин!</p>
 <div class = "inp">
     <input type="number" id="iter" size="17" placeholder="Количество прогонов">
     <input type="number" id="countAnts" size="17" placeholder="Количество муравьев">
@@ -16,8 +16,16 @@
     <button class="btn">Очистить</button>
 </div>
 <div class="canCont">
-    <canvas  width="1100" height="670" id="myCanvas"></canvas>
+    <canvas width="1100" height="670" id="myCanvas" tabindex="0"></canvas>
 </div>
+
+<div id="myAlert" class="customAlert hidden">
+    <div class="customAlertBox">
+        <p id="alertText"></p>
+        <button onclick="closeAlert()">OK</button>
+    </div>
+</div>
+
 <script src="ant.js"></script>
 </body>
 </html>
