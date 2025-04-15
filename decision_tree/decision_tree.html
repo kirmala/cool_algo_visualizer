@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="decision_tree.css">
+  <title>Decision Tree</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="inputs-container">
+            <input id="headersInput" type="text" placeholder='Optional headers'>
+            <div id="datasetContainer">
+                <textarea id="datasetInput" placeholder="Type something..."></textarea>
+                <button id="datasetSubmitBtn">Отправить</button>
+            </div>
+            <div id="objectContainer">
+                <input id="objectInput" type="text" placeholder="Object input (csv)">
+                <button id="objectSubmitBtn">Отправить</button>
+              </div>
+        </div>
+        <div class="tree-container">
+            <canvas id="treeCanvas"></canvas>
+        </div>
+    </div>
+<script src="main.js"></script>
+<script src="decision_tree.js"></script>
+</body>
+</html>
