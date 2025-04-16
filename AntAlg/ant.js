@@ -4,7 +4,7 @@ let clBtn = document.querySelectorAll(".btn");
 let points = [];
 
 
-function showAlert(text = "Это кастомный alert!") {
+function showAlert(text) {
     document.getElementById("alertText").innerText = text;
     document.getElementById("myAlert").classList.remove("hidden");
 }

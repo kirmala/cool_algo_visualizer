@@ -7,7 +7,6 @@ function closeAlert() {
     document.getElementById("myAlert").classList.add("hidden");
 }
 
-
 function generateTableForStar() {
     let size = document.getElementById("sizeTableForStar").value;
     let contain = document.getElementById("tabForStar");

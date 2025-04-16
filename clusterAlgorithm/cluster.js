@@ -3,6 +3,15 @@ let ctx = canv.getContext("2d");
 canv.width = 500;
 canv.height = 500;
 
+function showAlert(text) {
+    document.getElementById("alertText").innerText = text;
+    document.getElementById("myAlert").classList.remove("hidden");
+}
+
+function closeAlert() {
+    document.getElementById("myAlert").classList.add("hidden");
+}
+
 let points = [];
 
 let squareSize = 500;
@@ -27,7 +36,7 @@ function clusterize() {
     let k = parseInt(document.getElementById("numOfClusters").value);
     const clusters = kMeans(points, k);
     if (points.length < k) {
-        alert(`Нужно хотя бы ${k} точек!`);
+        showAlert(`Нужно хотя бы ${k} точек!`);
         return;
     }
 
