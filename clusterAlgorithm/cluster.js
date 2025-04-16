@@ -34,11 +34,12 @@ canv.addEventListener("mousedown", function (e) {
 
 function clusterize() {
     let k = parseInt(document.getElementById("numOfClusters").value);
-    const clusters = kMeans(points, k);
     if (points.length < k) {
         showAlert(`Нужно хотя бы ${k} точек!`);
         return;
     }
+    const clusters = kMeans(points, k);
+
 
     const colors = ["red", "blue", "green", "orange", "purple"];
     ctx.clearRect(0, 0, canvas.width, canvas.height);
