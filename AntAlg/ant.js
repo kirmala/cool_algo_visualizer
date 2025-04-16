@@ -173,17 +173,19 @@ function launch() {
     if (parseInt(countAnts) < points.length) countAnts = points.length;
     let bestW = alg.StartAlg(parseInt(countIt),parseInt(countAnts));
 
+    ctx.clearRect(0,0, can.width, can.height);
+    for(let point of points) draw(point.x, point.y);
+
     ctx.strokeStyle = "purple";
     ctx.lineWidth = 3;
-    ctx.beginPath();
 
+    ctx.beginPath();
     const startPeak = points[bestW.peakAnt[0]];
     ctx.moveTo(startPeak.x, startPeak.y);
     for (let i = 1; i < bestW.peakAnt.length; i++){
         let peak = points[bestW.peakAnt[i]];
         ctx.lineTo(peak.x, peak.y);
     }
-
     ctx.stroke();
     ctx.closePath();
 }
