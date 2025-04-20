@@ -6,7 +6,20 @@
     <title>Genetic</title>
 </head>
 <body>
+<div class="allMainBtn">
+    <button class="btn">Запуск</button>
+    <button class="btn">Очистить</button>
+</div>
+<div class="canCont">
+    <canvas width="1100" height="670" id="myCanvas" tabindex="0"></canvas>
+</div>
 
+<div id="myAlert" class="customAlert hidden">
+    <div class="customAlertBox">
+        <p id="alertText"></p>
+        <button onclick="closeAlert()">OK</button>
+    </div>
+</div>
 
 <script src="gen.js"></script>
 </body>
