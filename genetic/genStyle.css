@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    margin-top: 45px;
+    margin-top: 30px;
 }
 
 .btn{
@@ -65,6 +65,46 @@ body {
     border: 2px solid blue;
     border-radius: 10px;
     box-shadow: 0 0 10px #8421ff;
+}
+
+.inp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 35px;
+}
+
+#iter, #countPop {
+    width: 200px;
+    height: 25px;
+    padding: 6px 12px;
+    font-size: 17px;
+    border: 2px solid #1959c0;
+    border-radius: 18px;
+    text-align: center;
+    background-color: #161c36;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px #8421ff;
+}
+
+#iter:focus, #countPop:focus {
+    border-color: purple;
+    box-shadow: 0 0 10px #8421ff;
+}
+
+#iter::placeholder,
+#countPop::placeholder {
+    color: white;
+    font-size: 17px;
+}
+
+#iter:hover,
+#countPop:hover {
+    transform: scale(1.1);
+    background-color: #8421ff;
+    border-color: #8421ff;
 }
 
 .customAlert {

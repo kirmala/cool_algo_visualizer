@@ -38,9 +38,15 @@ clBtn[1].addEventListener("click", clearW);
 
 
 async function launch() {
-    const countPop = 1000;
-    const iter = 500;
+
+    const iter = document.getElementById("iter").value;
+    const countPop = document.getElementById("countPop").value;
     const mutationChance = 0.1;
+    if (!iter || !countPop || iter > 1000 || countPop > 2000 || iter <= 0 || countPop <= 0) {
+        showAlert("Введите корректные значения: итераций ≤ 1000, популяций ≤ 2000");
+        return;
+    }
+
     let matrix = build(points);
     let population = initial(matrix,countPop);
 
@@ -70,7 +76,7 @@ async function launch() {
         population = population.slice(0, countPop);
 
 
-        let bestW = population[0][0];
+        let bestW = population[0][1];
         ctx.clearRect(0,0, can.width, can.height);
         for(let point of points) draw(point.x, point.y);
 
@@ -78,15 +84,15 @@ async function launch() {
         ctx.lineWidth = 3;
 
         ctx.beginPath();
-        const startPeak = points[bestW.peakAnt[0]];
+        const startPeak = points[bestW[0]];
         ctx.moveTo(startPeak.x, startPeak.y);
-        for (let i = 1; i < bestW.peakAnt.length; i++){
-            let peak = points[bestW.peakAnt[i]];
+        for (let i = 1; i < bestW.length; i++){
+            let peak = points[bestW[i]];
             ctx.lineTo(peak.x, peak.y);
         }
         ctx.stroke();
         ctx.closePath();
-        await Promise
+        await new Promise(r => setTimeout(r, 300));
     }
 
 }
