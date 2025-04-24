@@ -1,0 +1,142 @@
+body {
+  font-family: Calibri;
+  background: linear-gradient(to right, #161c36, #1a237e);
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  color: white;
+}
+  
+.main-container {
+  width: 1200px;
+  background: rgba(25, 34, 126, 0.3);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 25px rgba(132, 33, 255, 0.5);
+  border: 1px solid #3219c0;
+}
+  
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #8421ff, 0 0 20px #8421ff;
+  animation: neonText 2s infinite alternate;
+}
+  
+.inputs-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#headersInput,
+#datasetFile,
+#objectInput {
+    border: 1px solid #3219c0;
+    padding: 10px 15px;
+    font-size: 16px;
+    background: rgba(25, 34, 126, 0.5);
+    color: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(132, 33, 255, 0.3);
+    width: 200px;
+}
+
+input[type="text"],
+input[type="file"],
+button {
+    border: 1px solid #3219c0;
+    padding: 10px 15px;
+    font-size: 16px;
+    background: rgba(25, 34, 126, 0.5);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(132, 33, 255, 0.3);
+}
+
+#pruneBtn{
+  width: 200px;
+}
+
+input[type="text"] {
+    width: 200px;
+}
+
+input[type="file"] {
+    width: 200px;
+}
+
+button {
+    width: 135px;
+    background-color: #3219c0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+  
+#datasetContainer,
+#objectContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+  
+.tree-container {
+  border: 2px solid #3219c0;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 0 20px rgba(132, 33, 255, 0.4);
+  padding: 20px;
+  overflow: auto;
+  position: relative;
+  width: 97%;
+  max-height: 600px;
+}
+  
+#treeCanvas {
+  display: block;
+}
+
+@keyframes neonText {
+  0% { text-shadow: 0 0 5px #8421ff, 0 0 10px #8421ff; }
+  50% { text-shadow: 0 0 15px #8421ff, 0 0 30px #8421ff; }
+  100% { text-shadow: 0 0 5px #8421ff, 0 0 10px #8421ff; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px #8421ff; }
+  50% { box-shadow: 0 0 20px #8421ff; }
+  100% { box-shadow: 0 0 10px #8421ff; }
+}
+
+/* Ховер-эффекты */
+button:hover {
+  transform: scale(1.05);
+  background-color: #5b0bb1;
+  box-shadow: 0 0 15px #8421ff;
+  animation: pulse 1s infinite;
+}
+
+#headersInput:focus,
+#datasetFile:focus,
+#objectInput:focus,
+#pruneThreshold:focus {
+  outline: none;
+  border-color: #8421ff;
+  box-shadow: 0 0 15px #8421ff;
+}
+
+/* Стили для текста placeholder */
+::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 1;
+}

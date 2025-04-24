@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Дерево решений</title>
+</head>
+
+<body>
+  <div class="main-container">
+    <h1>Дерево решений</h1>  <!-- Added header -->
+    <div class="inputs-container">
+
+      <!-- Replaced textarea with CSV file input -->
+      <div id="datasetContainer">
+        <input id="headersInput" type="text" placeholder="Optional headers (CSV)">
+        <label for="datasetFile">Загрузите CSV Dataset:</label>
+        <input type="file" id="datasetFile" accept=".csv">
+        <button id="datasetSubmitBtn">Отправить</button>
+      </div>
+
+      <div id="objectContainer">
+        <input id="objectInput" type="text" placeholder="Object input (CSV)">
+        <button id="objectSubmitBtn">Отправить</button>
+      </div>
+
+      <div id="pruneControls">
+        <label for="pruneThreshold">Min Gain:</label>
+        <input type="number" id="pruneThreshold" min="0" max="0.5" step="0.01" value="0.1">
+        <button id="pruneBtn">Оптимизировать</button>
+      </div>
+
+    </div>
+    <div class="tree-container">
+      <canvas id="treeCanvas"></canvas>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="decision_tree.js"></script>
+</body>
+</html>
