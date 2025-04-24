@@ -21,8 +21,9 @@ test_labels = np.zeros((len(y_test),10))
 for i,l in enumerate(y_test):
     test_labels[i][int(l)] = 1
 
-np.random.seed(1)
 
+#define constants
+np.random.seed(1)
 
 batch_size = 100
 alpha, iterations, hidden_size = (2, 60, 100)
@@ -31,7 +32,7 @@ pixels_per_image, num_labels = (784, 10)
 weights_0_1 = 0.02*np.random.random((pixels_per_image,hidden_size)) - 0.01
 weights_1_2 = 0.2*np.random.random((hidden_size,num_labels)) - 0.1
 
-
+#learning
 for j in range(iterations):
     correct_cnt = 0
     for i in range(int(len(images) / batch_size)):
@@ -65,4 +66,5 @@ for j in range(iterations):
         " Test-Acc:"+str(test_correct_cnt/float(len(test_images)))+\
         " Train-Acc:" + str(correct_cnt/float(len(images))))
 
+#save weights
 np.savez('model_weights.npz', layer1=weights_0_1, layer2=weights_1_2)

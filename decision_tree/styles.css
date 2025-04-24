@@ -99,7 +99,7 @@ button {
   overflow: auto;
   position: relative;
   width: 97%;
-  max-height: 600px;
+  max-height: 500px;
 }
   
 #treeCanvas {
