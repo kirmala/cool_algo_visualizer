@@ -26,7 +26,6 @@ function euclideanDistance(pointA, pointB) {
         pointA.reduce((sum, val, i) => sum + (val - pointB[i]) ** 2, 0)
     );
 }
-
 const colors = ["#e6194b", "#3cb44b", "#ffe119", "#0082c8", "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#d2f53c", "#fabebe"];
 let points = [];
 let squareSize = 500;
