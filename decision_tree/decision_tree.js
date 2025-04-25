@@ -1,7 +1,5 @@
 let headers = null;
 
-
-
 function setHeaders(userHeaders, trainingData) {
   const headersSize = trainingData[0].length - 1;
 
