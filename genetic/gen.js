@@ -46,6 +46,18 @@ async function launch() {
         showAlert("Введите корректные значения: итераций ≤ 1000, популяций ≤ 2000");
         return;
     }
+    if (points.length === 2)
+    {
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 3;
+
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        ctx.lineTo(points[1].x, points[1].y);
+        ctx.stroke();
+        ctx.closePath();
+        return;
+    }
 
     let matrix = build(points);
     let population = initial(matrix,countPop);
@@ -92,7 +104,7 @@ async function launch() {
         }
         ctx.stroke();
         ctx.closePath();
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 100));
     }
 
 }
@@ -100,7 +112,7 @@ async function launch() {
 function crossing(gen1, gen2) {
     let cut = Math.floor((gen1.length - 2) / 2);
     let beforeCut = gen1.slice(1, cut + 1);
-    let afterCut = gen2.slice(cut + 1, gen2.length - 2);
+    let afterCut = gen2.slice(cut + 1, gen2.length - 1);
     let check = new Set();
 
     for(let i = 0; i < afterCut.length; i++)
