@@ -75,15 +75,27 @@ button {
     cursor: pointer;
     animation: fadeIn 0.5s ease-in-out forwards;
 }
+#top-left-button{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    display: flex;
+}
 
-button:hover {
+
+button:hover  {
     transform: scale(1.1);
     animation: pulse 1s infinite;
     background-color: #5b0bb1;
     border-color: #5b0bb1;
 }
 
-button::before {
+button::before  {
     content: "";
     position: absolute;
     width: 100%;

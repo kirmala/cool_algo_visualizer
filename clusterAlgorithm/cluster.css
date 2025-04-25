@@ -80,6 +80,7 @@ canvas {
 .button-container {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
 @keyframes fadeIn {
     from {
@@ -155,4 +156,36 @@ canvas {
 
 .hidden {
     display: none;
+}
+#tooltip{
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: none;
+    pointer-events: none;
+    z-index: 1000;
+}
+label{
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    display: flex;
+}
+select{
+    width: 17%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+#top-left-button{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    text-decoration: none;
+    font-size: 22px;
 }

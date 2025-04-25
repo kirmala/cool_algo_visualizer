@@ -9,9 +9,16 @@
   <h1>
     Расставьте точки для кластеризации
   </h1>
+  <a href="../workaem.html" class="clusterBtn" id="top-left-button" >Вернуться к главной 🔙</a>
   <input type="number" id="numOfClusters" size="17" placeholder="Введите k">
   <div class="button-container">
-      <button class="clusterBtn" onclick="clusterize()">Найти кластеры</button>
+      <label for="method">Метод кластеризации:</label>
+      <select id="method">
+          <option value="kmeans">K-Means</option>
+          <option value="hierarchical">Hierarchical</option>
+          <option value="dbscan">DBSCAN</option>
+      </select>
+      <button class="clusterBtn" onclick="clusterize()">Найти кластеры </button>
       <button class="clusterBtn" onclick="clearCanv()">Очистить холст</button>
   </div>
 
@@ -23,7 +30,7 @@
           <button onclick="closeAlert()">OK</button>
       </div>
   </div>
-
+  <div id="tooltip"></div>
 <script src="cluster.js"></script>
 </body>
 </html>

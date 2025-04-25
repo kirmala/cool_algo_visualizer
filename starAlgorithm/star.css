@@ -75,6 +75,12 @@ body {
         transform: translateY(0);
     }
 }
+#top-left-button {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    text-decoration: none;
+}
 
 
 .clickedRed{
