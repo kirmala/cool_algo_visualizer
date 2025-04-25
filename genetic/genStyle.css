@@ -14,7 +14,7 @@ body {
     margin-top: 30px;
 }
 
-.btn{
+.btn, .leave {
     width: 200px;
     height: 50px;
     font-family: Calibri;
@@ -31,14 +31,14 @@ body {
     overflow: hidden;
 }
 
-.btn:hover {
+.btn:hover, .leave:hover {
     transform: scale(1.1);
     background-color: #5b0bb1;
     border-color: #5b0bb1;
 
 }
 
-.btn::before {
+.btn::before, .leave::before {
     content: "";
     position: absolute;
     top: 0;
@@ -50,7 +50,7 @@ body {
     pointer-events: none;
 }
 
-.btn:hover::before {
+.btn:hover::before, .leave:hover::before {
     left: 100%;
 }
 
