@@ -138,14 +138,3 @@ button:hover {
   color: rgba(255, 255, 255, 0.6);
   opacity: 1;
 }
-#top-left-button{
-    position: absolute;
-    top: 50px;
-    left: 90px;
-    text-decoration: none;
-    font-size: 20px;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 20px;
-    display: flex;
-}

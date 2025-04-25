@@ -138,15 +138,12 @@ function buildTree(rows) {
 function pruneTree(node, minGain) {
   if (!(node instanceof DecisionNode)) return node;
   
-  // Prune branches first (post-order traversal)
   node.trueBranch = pruneTree(node.trueBranch, minGain);
   node.falseBranch = pruneTree(node.falseBranch, minGain);
   
-  // Only prune nodes with two leaf children
   if (node.trueBranch instanceof Leaf && 
       node.falseBranch instanceof Leaf) {
     
-    // Calculate Gini impurity for merged node
     const mergedPredictions = mergePredictions(
       node.trueBranch.predictions, 
       node.falseBranch.predictions
@@ -155,7 +152,7 @@ function pruneTree(node, minGain) {
     giniGain = infoGain(countsToRows(node.trueBranch.predictions), countsToRows(node.falseBranch.predictions), mergedGini)
 
     if (giniGain < minGain) {
-      return new Leaf(countsToRows(mergedPredictions)); // Replace with leaf
+      return new Leaf(countsToRows(mergedPredictions));
     }
   }
   return node;
@@ -179,7 +176,7 @@ function printLeaf(counts) {
 }
 
 function classifyPath(row, node) {
-  let path = [];  // To store the path of nodes visited
+  let path = [];
   if (node instanceof Leaf) {
       path.push(node);
       return { path, predictions: node.predictions };
@@ -290,9 +287,8 @@ function drawNode(x, y, node, isHighlighted) {
   let text;
 
   if (node instanceof DecisionNode) {
-    text = node.question.toString(); // e.g. "Is color == Red?"
+    text = node.question.toString();
   } else {
-    // Leaf: convert prediction counts into percentages
     const total = Object.values(node.predictions).reduce((a, b) => a + b, 0);
     text = Object.entries(node.predictions)
       .map(([label, count]) => `${label}: ${Math.round((count / total) * 100)}%`)

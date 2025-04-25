@@ -11,10 +11,9 @@
   <button >Вернуться к главной 🔙</button>
 </a>
   <div class="main-container">
-    <h1>Дерево решений</h1>  <!-- Added header -->
+    <h1>Дерево решений</h1>
     <div class="inputs-container">
 
-      <!-- Replaced textarea with CSV file input -->
       <div id="datasetContainer">
         <input id="headersInput" type="text" placeholder="Optional headers (CSV)">
         <label for="datasetFile">Загрузите CSV Dataset:</label>
@@ -36,6 +35,13 @@
     </div>
     <div class="tree-container">
       <canvas id="treeCanvas"></canvas>
+    </div>
+  </div>
+
+  <div id="myAlert" class="customAlert hidden">
+    <div class="customAlertBox">
+      <p id="alertText"></p>
+      <button onclick="closeAlert()">OK</button>
     </div>
   </div>
 
