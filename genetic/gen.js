@@ -78,15 +78,12 @@ async function launch() {
         let child2 = crossing(gen2, gen1);
         child1 = mutation(child1, mutationChance);
         child2 = mutation(child2, mutationChance);
-        let dist1 = dist(matrix, child1);
-        let dist2 = dist(matrix, child2);
 
-        population.push([dist1, child1]);
-        population.push([dist2, child2]);
+        population.push([dist(matrix, child1), child1]);
+        population.push([dist(matrix, child2), child2]);
 
         population.sort((a, b) => a[0] - b[0]);
         population = population.slice(0, countPop);
-
 
         let bestW = population[0][1];
         ctx.clearRect(0,0, can.width, can.height);
